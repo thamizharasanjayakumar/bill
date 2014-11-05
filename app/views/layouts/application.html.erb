@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Bill</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+	<nav class="navbar navbar-default">
+		<div class="col-md-12">
+			<% if admin_signed_in? %>
+				<ul class="navbar-top pull-right">
+					<li class="email"><%= current_admin.email %></li>
+					<li><%= link_to "Sign out", destroy_admin_session_path, :method =>:delete, :class=>"btn btn-primary btn-sm" %><li>
+				</ul>
+			<% end %>
+		</div>
+	</nav>
+<%= yield %>
+
+</body>
+</html>
