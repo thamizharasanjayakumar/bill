@@ -1,4 +1,4 @@
-<%= form_for(@billing) do |f| %>
+<%= form_for(@billing,:role=>"form") do |f| %>
   <% if @billing.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@billing.errors.count, "error") %> prohibited this billing from being saved:</h2>
@@ -11,15 +11,57 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :vehicle_no %><br>
-    <%= f.text_field :vehicle_no %>
+  <ul class="nav nav-tabs" role="tablist">
+    <li role="presentation" class="active"><a href="#personal_information" role="tab" data-toggle="tab">Personal Information</a></li>
+    <li role="presentation"><a href="#vehicle_information" role="tab" data-toggle="tab">Vehicle Information</a></li>
+  </ul>
+
+
+<div class="tab-content">
+  <div role="tabpanel" class="tab-pane active" id="personal_information">
+    
+    <div class="row">
+      <div class="col-md-6">
+
+        <div class="form-group">
+          <div class="row">
+            <div class="col-md-2">
+              <%= f.label :name %>
+            </div>
+            <div class="col-md-8">
+              <%= f.text_field :name,:class=>"form-control" %>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+    
   </div>
-  <div class="field">
-    <%= f.label :name %><br>
-    <%= f.text_field :name %>
+
+  <div role="tabpanel" class="tab-pane" id="vehicle_information">
+    
+    <div class="row">
+      <div class="col-md-6">
+
+        <div class="form-group">
+          <div class="row">
+            <div class="col-md-2">
+              <%= f.label :vehicle_no %>
+            </div>
+            <div class="col-md-8">
+              <%= f.text_field :vehicle_no,:class=>"form-control" %>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="actions">
+      <%= f.submit %>
+    </div>
+
   </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+</div>
 <% end %>
